@@ -3,6 +3,7 @@ import { Navigate, useNavigate, Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import Loader from "./Loader";
 
 // Private Route Component
 function PrivateRoute() {
@@ -71,7 +72,7 @@ const Routers = () => {
         <Route
           path="/user-form"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <UserForm />
             </Suspense>
           }
@@ -79,7 +80,7 @@ const Routers = () => {
         <Route
           path="/"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <Home />
             </Suspense>
           }
@@ -87,7 +88,7 @@ const Routers = () => {
         <Route
           path="/dashboard"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <Dashboard />
             </Suspense>
           }
@@ -95,7 +96,7 @@ const Routers = () => {
         <Route
           path="/rich-text-editor"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <RichTextEditor />
             </Suspense>
           }
@@ -104,7 +105,7 @@ const Routers = () => {
       <Route
         path="/signin"
         element={
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Login />
           </Suspense>
         }
@@ -113,7 +114,7 @@ const Routers = () => {
       <Route
         path="/signup"
         element={
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <SignUp />
           </Suspense>
         }
