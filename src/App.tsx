@@ -5,6 +5,7 @@ import Routers from "./components/Routers";
 import { useSpring, animated } from "react-spring";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
+import { Toaster } from "react-hot-toast";
 
 const theme = createTheme({
   palette: {
@@ -56,6 +57,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Toaster />
       <div style={{ overflow: "hidden", position: "relative" }}>
         <CssBaseline />
         <AnimatedContainer
