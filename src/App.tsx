@@ -1,10 +1,10 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline, Container } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import Routers from "./components/Routers";
 import { useSpring, animated } from "react-spring";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import Routers from "./components/Routers";
 
 const theme = createTheme({
   palette: {
@@ -26,6 +26,32 @@ const theme = createTheme({
 });
 
 function App() {
+  const count = useSelector(
+    (state: RootState) => state.counter.history.slice(-1)[0] || 0
+  );
+  const maxIntensity = 100;
+
+  const bezierEasing = (t: number) => {
+    return t * t * (3 - 2 * t);
+  };
+
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  const { background } = useSpring({
+    background: `linear-gradient(to top, rgba(107, 70, 193, ${bezierEasing(
+      Math.min(Math.abs(count) / maxIntensity, 1)
+    )}) ${
+      pathname !== "/" && pathname !== "/dashboard"
+        ? 0
+        : bezierEasing(Math.min(Math.abs(count) / maxIntensity, 1)) * 100
+    }%, rgba(107, 70, 193, 0) 0%)`,
+    config: {
+      tension: 300,
+      friction: 20,
+    },
+  });
+
   const AnimatedContainer = animated(Container);
 
   return (
@@ -35,7 +61,7 @@ function App() {
         <AnimatedContainer
           maxWidth="xl"
           sx={{ py: 4, height: "100vh" }}
-          style={{ overflow: "auto" }}
+          style={{ background, overflow: "auto" }}
         >
           <Routers />
         </AnimatedContainer>

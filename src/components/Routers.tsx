@@ -42,8 +42,13 @@ function PrivateRoute() {
 }
 
 // Lazy load components
+const Counter = React.lazy(() => import("./Counter"));
+const UserForm = React.lazy(() => import("./UserForm"));
 const Login = React.lazy(() => import("./SignIn"));
 const SignUp = React.lazy(() => import("./SignUp"));
+const RichTextEditor = React.lazy(() => import("./RichTextEditor"));
+const Dashboard = React.lazy(() => import("./Dashboard"));
+const Home = React.lazy(() => import("./Home"));
 
 const Routers = () => {
   const navigate = useNavigate();
@@ -63,6 +68,48 @@ const Routers = () => {
 
   return (
     <Routes>
+      <Route path="/" element={<PrivateRoute />}>
+        <Route
+          path="/counter"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Counter />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/user-form"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <UserForm />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/rich-text-editor"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <RichTextEditor />
+            </Suspense>
+          }
+        />
+      </Route>
       <Route
         path="/signin"
         element={
