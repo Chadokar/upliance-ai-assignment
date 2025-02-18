@@ -3,11 +3,11 @@ import { Box, Grid, Paper, Typography } from "@mui/material";
 import Counter from "./Counter";
 import CounterTrends from "./CounterTrends";
 
-const Dashboard: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Dashboard
+        Home
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
@@ -31,4 +31,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Home;

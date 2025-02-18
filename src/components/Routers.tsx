@@ -42,7 +42,6 @@ function PrivateRoute() {
 }
 
 // Lazy load components
-const Counter = React.lazy(() => import("./Counter"));
 const UserForm = React.lazy(() => import("./UserForm"));
 const Login = React.lazy(() => import("./SignIn"));
 const SignUp = React.lazy(() => import("./SignUp"));
@@ -69,14 +68,6 @@ const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<PrivateRoute />}>
-        <Route
-          path="/counter"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <Counter />
-            </Suspense>
-          }
-        />
         <Route
           path="/user-form"
           element={
